@@ -4,8 +4,7 @@
 
 A multi-page website for a fictional second-hand electronics business — selling tested, certified refurbished smartphones, laptops, hard drives, and RAM. Built with plain HTML, CSS, and JavaScript (no frameworks, no build tools).
 
-[Live Site](#) — *replace with your GitHub Pages link once deployed*
-
+[Live Site](#) — 
 ---
 
 ## Overview
