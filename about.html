@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — SabeloTech</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      padding: 10rem 5rem 6rem;
+      background: var(--dark);
+    }
+    .page-hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .page-hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.08;
+      letter-spacing: -1px;
+      max-width: 640px;
+    }
+    .page-hero-title em { font-style: italic; color: var(--accent2); }
+
+    /* ── STORY SECTION ── */
+    .story {
+      padding: 7rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      background: var(--bg);
+    }
+    .story-text p {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.95;
+      margin-bottom: 1.2rem;
+    }
+    .story-text p strong {
+      color: var(--dark);
+      font-weight: 600;
+    }
+    .story-visual {
+      background: var(--dark);
+      padding: 3.5rem;
+      position: relative;
+    }
+    .story-visual::before {
+      content: '';
+      position: absolute;
+      top: -12px; left: -12px; right: 12px; bottom: 12px;
+      border: 1.5px solid var(--border);
+      z-index: -1;
+    }
+    .story-quote {
+      font-family: var(--font-head);
+      font-size: 1.35rem;
+      font-style: italic;
+      color: #fff;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+    .story-quote-author {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent2);
+    }
+
+    /* ── VALUES ── */
+    .values {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 6rem 5rem;
+    }
+    .values-header { margin-bottom: 3.5rem; }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+    }
+    .value-card {
+      background: var(--card);
+      padding: 2.5rem 2rem;
+      transition: background 0.2s;
+    }
+    .value-card:hover { background: var(--light); }
+    .value-num {
+      font-family: var(--font-head);
+      font-size: 3rem;
+      font-weight: 700;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 1.2rem;
+    }
+    .value-title {
+      font-family: var(--font-head);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.7rem;
+    }
+    .value-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* ── PROCESS ── */
+    .process {
+      padding: 7rem 5rem;
+      background: var(--bg);
+    }
+    .process-header { margin-bottom: 3.5rem; }
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute;
+      top: 24px; left: 12.5%;
+      right: 12.5%;
+      height: 1px;
+      background: var(--border);
+      z-index: 0;
+    }
+    .process-step {
+      padding: 0 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .step-dot {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-head);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--accent);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .process-step:hover .step-dot {
+      background: var(--dark);
+      border-color: var(--dark);
+      color: var(--accent2);
+    }
+    .step-title {
+      font-family: var(--font-head);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.5rem;
+    }
+    .step-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ── CTA ── */
+    .about-cta {
+      background: var(--accent);
+      padding: 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+    .about-cta h2 {
+      font-family: var(--font-head);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+    }
+    .btn-white {
+      background: #fff;
+      color: var(--accent);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.2rem;
+      white-space: nowrap;
+      display: inline-block;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    @media (max-width: 900px) {
+      .page-hero { padding: 8rem 1.5rem 4rem; }
+      .story { grid-template-columns: 1fr; gap: 3rem; padding: 4rem 1.5rem; }
+      .values { padding: 4rem 1.5rem; }
+      .values-grid { grid-template-columns: 1fr; }
+      .process { padding: 4rem 1.5rem; }
+      .process-steps { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+      .process-steps::before { display: none; }
+      .about-cta { flex-direction: column; padding: 3rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="logo">Sabelo<span>Tech</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <span class="page-hero-eyebrow">Our Story</span>
+    <h1 class="page-hero-title">Built on the Belief That Good Tech<br><em>Should Not Cost a Fortune.</em></h1>
+  </div>
+
+  <!-- STORY -->
+  <section class="story">
+    <div class="story-text reveal">
+      <span class="section-eyebrow">Who We Are</span>
+      <h2 class="section-title" style="margin-bottom:1.5rem">SabeloTech</h2>
+      <div class="divider"></div>
+      <p>
+        SabeloTech was started with a simple observation: <strong>too many people are priced out of functional technology.</strong>
+        A working laptop should not require months of saving. A reliable smartphone should not be a luxury.
+      </p>
+      <p>
+        We source second-hand phones, laptops, hard drives and RAM — inspect every single one through a
+        <strong>15-point diagnostic process</strong> — and sell them at prices that make sense for students,
+        small businesses, and families.
+      </p>
+      <p>
+        Every device is graded honestly. Grade A means like-new. Grade B means functional with minor cosmetic wear.
+        Grade C means it works perfectly but shows its age. No hidden surprises.
+      </p>
+    </div>
+    <div class="story-visual reveal reveal-delay-2">
+      <p class="story-quote">
+        "Good tech should not be a privilege. It should be accessible to anyone willing to look a little harder."
+      </p>
+      <span class="story-quote-author">— Sabelo, Founder</span>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="values">
+    <div class="values-header">
+      <span class="section-eyebrow reveal">What Drives Us</span>
+      <h2 class="section-title reveal reveal-delay-1">Our Values</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card reveal">
+        <div class="value-num">01</div>
+        <div class="value-title">Transparency First</div>
+        <p class="value-desc">We list every defect, every limitation, every spec — accurately. You decide based on real information, not marketing.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-1">
+        <div class="value-num">02</div>
+        <div class="value-title">Quality Without Compromise</div>
+        <p class="value-desc">Second-hand does not mean second-rate. Every device must pass our diagnostics. If it does not, it does not get listed.</p>
+      </div>
+      <div class="value-card reveal reveal-delay-2">
+        <div class="value-num">03</div>
+        <div class="value-title">Real Accountability</div>
+        <p class="value-desc">90-day warranty on everything. If something goes wrong through no fault of yours, we make it right. That is a promise.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process">
+    <div class="process-header">
+      <span class="section-eyebrow reveal">How It Works</span>
+      <h2 class="section-title reveal reveal-delay-1">From Sourcing<br><em>to Your Hands.</em></h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step reveal">
+        <div class="step-dot">01</div>
+        <div class="step-title">Source</div>
+        <p class="step-desc">Devices are sourced from trusted suppliers, trade-ins and verified resellers.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-dot">02</div>
+        <div class="step-title">Inspect</div>
+        <p class="step-desc">Every device goes through a full 15-point hardware and software diagnostic check.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-dot">03</div>
+        <div class="step-title">Grade</div>
+        <p class="step-desc">Devices are graded A, B, or C and listed with accurate, honest descriptions.</p>
+      </div>
+      <div class="process-step reveal reveal-delay-3">
+        <div class="step-dot">04</div>
+        <div class="step-title">Deliver</div>
+        <p class="step-desc">You get your device, your receipt, and a 90-day warranty. Simple as that.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="about-cta">
+    <h2>Ready to find your next device?</h2>
+    <a href="products.html" class="btn-white">Browse Products</a>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Sabelo<span>Tech</span></div>
+    <div class="footer-right">
+      <div class="footer-tagline">Refurb. Reimagined.</div>
+      <div style="margin-top:0.4rem">© 2025 SabeloTech. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

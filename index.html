@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SabeloTech — Refurb. Reimagined.</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+    }
+    .hero-left {
+      background: var(--dark);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; right: -80px;
+      width: 320px; height: 320px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      bottom: -140px; right: -140px;
+      width: 480px; height: 480px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.2s forwards;
+    }
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.4s forwards;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--accent2);
+    }
+    .hero-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.85;
+      max-width: 400px;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.7s ease 0.6s forwards;
+    }
+    .hero-btns {
+      display: flex; gap: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease 0.8s forwards;
+    }
+    .btn-light {
+      background: var(--bg);
+      color: var(--dark);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      border: none; cursor: pointer;
+      display: inline-block;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-light:hover { background: var(--surface); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.7);
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.85rem 2rem;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      display: inline-block;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: #fff; }
+
+    .hero-right {
+      background: var(--surface);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 5rem;
+      gap: 1.5rem;
+      position: relative;
+    }
+    .hero-right-label {
+      position: absolute;
+      top: 5rem; left: 5rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .hero-stat-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .hero-stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 1.8rem 1.5rem;
+    }
+    .hero-stat-num {
+      font-family: var(--font-head);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--dark);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .hero-stat-label {
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .hero-feature {
+      background: var(--dark);
+      padding: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .hero-feature-bar {
+      width: 3px; height: 40px;
+      background: var(--accent2);
+      flex-shrink: 0;
+    }
+    .hero-feature p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+    .hero-feature strong {
+      display: block;
+      color: #fff;
+      font-size: 0.92rem;
+      margin-bottom: 0.15rem;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── MARQUEE ── */
+    .marquee-wrap {
+      overflow: hidden;
+      background: var(--accent);
+      padding: 0.75rem 0;
+    }
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-track span {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: #fff;
+      padding: 0 3rem;
+    }
+    .marquee-track span.dot {
+      color: rgba(255,255,255,0.4);
+      padding: 0 0.5rem;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ── CATEGORIES PREVIEW ── */
+    .categories {
+      padding: 7rem 5rem;
+      background: var(--bg);
+    }
+    .categories-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+    }
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+    }
+    .cat-card {
+      background: var(--card);
+      padding: 2.8rem 2rem;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+    .cat-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    .cat-card:hover { background: var(--light); }
+    .cat-card:hover::after { transform: scaleX(1); }
+    .cat-icon {
+      width: 40px; height: 40px;
+      border: 1.5px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.8rem;
+      font-size: 0;
+    }
+    .cat-icon svg {
+      width: 18px; height: 18px;
+      stroke: var(--dark); fill: none;
+      stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
+    }
+    .cat-name {
+      font-family: var(--font-head);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.6rem;
+    }
+    .cat-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .cat-link {
+      font-size: 0.76rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .cat-link svg {
+      width: 14px; height: 14px;
+      stroke: var(--accent); fill: none;
+      stroke-width: 2; stroke-linecap: round;
+      transition: transform 0.2s;
+    }
+    .cat-card:hover .cat-link svg { transform: translateX(4px); }
+
+    /* ── PROMISE STRIP ── */
+    .promise {
+      background: var(--dark);
+      padding: 5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+    }
+    .promise-item {
+      padding: 2rem 3rem;
+      border-right: 1px solid rgba(255,255,255,0.07);
+    }
+    .promise-item:last-child { border-right: none; }
+    .promise-num {
+      font-family: var(--font-head);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent2);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .promise-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.5rem;
+    }
+    .promise-desc {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.8;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 5rem 1.5rem; }
+      .categories { padding: 4rem 1.5rem; }
+      .categories-grid { grid-template-columns: 1fr 1fr; }
+      .promise { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+      .promise-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.07); }
+      .categories-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="logo">Sabelo<span>Tech</span></div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <span class="hero-eyebrow">Certified Refurbished Tech</span>
+      <h1 class="hero-title">Refurb.<br><em>Reimagined.</em></h1>
+      <p class="hero-sub">
+        Premium second-hand phones, laptops, hard drives and RAM —
+        thoroughly tested, honestly graded, and priced for real people.
+      </p>
+      <div class="hero-btns">
+        <a href="products.html" class="btn-light">Browse Products</a>
+        <a href="about.html" class="btn-ghost">Our Story</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <span class="hero-right-label">By the numbers</span>
+      <div class="hero-stat-row">
+        <div class="hero-stat reveal">
+          <span class="hero-stat-num">500+</span>
+          <span class="hero-stat-label">Devices Sold</span>
+        </div>
+        <div class="hero-stat reveal reveal-delay-1">
+          <span class="hero-stat-num">200+</span>
+          <span class="hero-stat-label">Happy Clients</span>
+        </div>
+        <div class="hero-stat reveal reveal-delay-2">
+          <span class="hero-stat-num">90</span>
+          <span class="hero-stat-label">Day Warranty</span>
+        </div>
+        <div class="hero-stat reveal reveal-delay-3">
+          <span class="hero-stat-num">100%</span>
+          <span class="hero-stat-label">Tested</span>
+        </div>
+      </div>
+      <div class="hero-feature reveal reveal-delay-4">
+        <div class="hero-feature-bar"></div>
+        <div>
+          <strong>15-Point Inspection on Every Device</strong>
+          <p>Battery, screen, storage, connectivity — nothing ships without passing our full diagnostic checklist.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span>Smartphones</span><span class="dot">—</span>
+      <span>Laptops</span><span class="dot">—</span>
+      <span>Hard Drives</span><span class="dot">—</span>
+      <span>RAM Modules</span><span class="dot">—</span>
+      <span>Certified Refurbished</span><span class="dot">—</span>
+      <span>90-Day Warranty</span><span class="dot">—</span>
+      <span>Free Diagnostics</span><span class="dot">—</span>
+      <span>Honest Grading</span><span class="dot">—</span>
+      <span>Smartphones</span><span class="dot">—</span>
+      <span>Laptops</span><span class="dot">—</span>
+      <span>Hard Drives</span><span class="dot">—</span>
+      <span>RAM Modules</span><span class="dot">—</span>
+      <span>Certified Refurbished</span><span class="dot">—</span>
+      <span>90-Day Warranty</span><span class="dot">—</span>
+      <span>Free Diagnostics</span><span class="dot">—</span>
+      <span>Honest Grading</span><span class="dot">—</span>
+    </div>
+  </div>
+
+  <!-- CATEGORIES PREVIEW -->
+  <section class="categories">
+    <div class="categories-header">
+      <div>
+        <span class="section-eyebrow reveal">What We Carry</span>
+        <h2 class="section-title reveal reveal-delay-1">Quality Gear,<br><em>Honest Prices.</em></h2>
+      </div>
+      <a href="products.html" class="btn btn-dark reveal">View All Products</a>
+    </div>
+    <div class="categories-grid">
+
+      <div class="cat-card reveal">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18.01"/></svg>
+        </div>
+        <div class="cat-name">Smartphones</div>
+        <p class="cat-desc">iPhones, Samsung, Huawei and more. Battery-checked, screen-verified, IMEI-cleared.</p>
+        <a href="products.html" class="cat-link">
+          See Phones
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+
+      <div class="cat-card reveal reveal-delay-1">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+        </div>
+        <div class="cat-name">Laptops</div>
+        <p class="cat-desc">Dell, Lenovo, HP and Acer. SSD-upgraded where possible. Runs fast, looks clean.</p>
+        <a href="products.html" class="cat-link">
+          See Laptops
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+
+      <div class="cat-card reveal reveal-delay-2">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="1"/><line x1="6" y1="12" x2="6" y2="12.01"/><line x1="10" y1="12" x2="10" y2="12.01"/></svg>
+        </div>
+        <div class="cat-name">Hard Drives</div>
+        <p class="cat-desc">HDDs and SSDs in various capacities. Health-checked and wiped clean before every sale.</p>
+        <a href="products.html" class="cat-link">
+          See Drives
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+
+      <div class="cat-card reveal reveal-delay-3">
+        <div class="cat-icon">
+          <svg viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="8" rx="1"/><line x1="6" y1="12" x2="6" y2="12.01"/><line x1="10" y1="12" x2="10" y2="12.01"/><line x1="14" y1="12" x2="14" y2="12.01"/></svg>
+        </div>
+        <div class="cat-name">RAM Modules</div>
+        <p class="cat-desc">DDR3 and DDR4 sticks for desktops and laptops. Stress-tested, error-free.</p>
+        <a href="products.html" class="cat-link">
+          See RAM
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROMISE STRIP -->
+  <div class="promise">
+    <div class="promise-item reveal">
+      <span class="promise-num">01</span>
+      <div class="promise-label">Full Diagnostics</div>
+      <p class="promise-desc">Every device goes through a 15-point hardware inspection before it ever gets listed.</p>
+    </div>
+    <div class="promise-item reveal reveal-delay-1">
+      <span class="promise-num">02</span>
+      <div class="promise-label">90-Day Warranty</div>
+      <p class="promise-desc">If it breaks through no fault of yours within 90 days, we fix or replace it. No arguments.</p>
+    </div>
+    <div class="promise-item reveal reveal-delay-2">
+      <span class="promise-num">03</span>
+      <div class="promise-label">Honest Grading</div>
+      <p class="promise-desc">Grade A, B, or C — accurately described so you know exactly what you are buying.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Sabelo<span>Tech</span></div>
+    <div class="footer-right">
+      <div class="footer-tagline">Refurb. Reimagined.</div>
+      <div style="margin-top:0.4rem">© 2025 SabeloTech. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
