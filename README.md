@@ -11,8 +11,6 @@ A multi-page website for a fictional second-hand electronics business — sellin
 
 SabeloTech is a front-end portfolio project demonstrating a complete, multi-page business website: a home page, a filterable product catalog, an about/story page, and a working contact form connected to a real backend (Formspree).
 
-The design uses a dark, cyberpunk-inspired aesthetic — near-black backgrounds, neon mint and magenta accents, Orbitron for headings, and JetBrains Mono for body text.
-
 ---
 
 ## Pages
